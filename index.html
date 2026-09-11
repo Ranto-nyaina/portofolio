@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rantoniaina Harlivah Fanomezantsoa — Développeur full-stack</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0B1E33;
+    --surface: #12283F;
+    --surface-2: #16304A;
+    --line: #274863;
+    --line-soft: rgba(111,184,224,0.14);
+    --ink: #EAF3FA;
+    --ink-soft: #9FB9CC;
+    --accent: #E8A33D;
+    --accent-soft: rgba(232,163,61,0.16);
+    --confirmed: #6FB8E0;
+    --progress: #E8A33D;
+    --radius: 3px;
+    --maxw: 780px;
+  }
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{
+    margin:0;
+    background:
+      linear-gradient(var(--line-soft) 1px, transparent 1px) 0 0/40px 40px,
+      linear-gradient(90deg, var(--line-soft) 1px, transparent 1px) 0 0/40px 40px,
+      var(--bg);
+    color: var(--ink);
+    font-family: 'IBM Plex Sans', sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a{ color: var(--confirmed); }
+  a:focus-visible, button:focus-visible{
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+  .wrap{
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  .mono{ font-family: 'IBM Plex Mono', monospace; }
+
+  /* ---------- HERO ---------- */
+  header.hero{
+    padding: 88px 0 64px;
+    border-bottom: 1px solid var(--line);
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 40px;
+    align-items:center;
+  }
+  .eyebrow-loc{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--ink-soft);
+    margin: 0 0 14px;
+  }
+  h1{
+    font-size: clamp(2rem, 4.4vw, 2.9rem);
+    line-height: 1.12;
+    margin: 0 0 18px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .role-line{
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0 0 28px;
+    max-width: 46ch;
+  }
+  .cta-row{ display:flex; gap:14px; flex-wrap:wrap; }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding: 11px 18px;
+    border-radius: var(--radius);
+    text-decoration:none;
+    font-size: 0.92rem;
+    font-weight: 600;
+    border: 1px solid var(--line);
+    color: var(--ink);
+    transition: border-color .15s ease, background .15s ease;
+  }
+  .btn.primary{
+    background: var(--accent);
+    color: #1a1305;
+    border-color: var(--accent);
+  }
+  .btn:hover{ border-color: var(--confirmed); }
+  .btn.primary:hover{ background:#f0b258; }
+
+  /* hero diagram */
+  .diagram{ width:100%; height:auto; }
+  .node-label{ font-family:'IBM Plex Mono', monospace; font-size: 11px; fill: var(--ink); }
+  .node-sub{ font-family:'IBM Plex Mono', monospace; font-size: 9px; fill: var(--ink-soft); }
+  .legend{
+    display:flex; gap:20px; margin-top:14px; flex-wrap:wrap;
+    font-family:'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-soft);
+  }
+  .legend span{ display:inline-flex; align-items:center; gap:6px; }
+  .swatch{ width:14px; height:2px; display:inline-block; }
+  .swatch.solid{ background: var(--confirmed); }
+  .swatch.dashed{ background: repeating-linear-gradient(90deg, var(--progress) 0 4px, transparent 4px 7px); }
+
+  .avatar{
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid var(--line);
+    margin-bottom: 20px;
+    display:block;
+  }
+
+  /* ---------- SECTIONS ---------- */
+  section{ padding: 56px 0; border-bottom: 1px solid var(--line); }
+  section:last-of-type{ border-bottom:none; }
+  h2{
+    font-size: 1.5rem;
+    margin: 0 0 28px;
+    font-weight: 700;
+  }
+  .lede{ color: var(--ink-soft); max-width: 62ch; }
+
+  /* profil */
+  .profil-text{ max-width: 64ch; font-size: 1.02rem; color: var(--ink); }
+  .profil-text p{ margin: 0 0 16px; }
+
+  /* compétences */
+  .skill-groups{ display:grid; grid-template-columns: repeat(2, 1fr); gap: 20px 32px; }
+  .skill-group h3{
+    font-size: 0.78rem; text-transform: none; letter-spacing:0.02em;
+    color: var(--accent); margin: 0 0 10px; font-weight:600;
+  }
+  .tag-row{ display:flex; flex-wrap:wrap; gap: 8px; }
+  .tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    padding: 5px 10px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    color: var(--ink-soft);
+  }
+
+  /* projets */
+  .project{
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 26px 28px;
+    margin-bottom: 20px;
+  }
+  .project-top{
+    display:flex; justify-content:space-between; align-items:baseline; gap:16px; flex-wrap:wrap;
+    margin-bottom: 10px;
+  }
+  .project-top h3{ font-size: 1.12rem; margin:0; font-weight:700; }
+  .project-meta{ font-family:'IBM Plex Mono', monospace; font-size: 0.78rem; color: var(--ink-soft); white-space:nowrap; }
+  .project p{ color: var(--ink-soft); margin: 0 0 14px; max-width: 60ch; }
+  .project .tag-row{ margin-top: 4px; }
+  .project-role{
+    font-size: 0.85rem; color: var(--ink); margin: 0 0 12px;
+    border-left: 2px solid var(--accent);
+    padding-left: 10px;
+  }
+
+  /* expérience — timeline */
+  .timeline{ position:relative; padding-left: 26px; }
+  .timeline::before{
+    content:""; position:absolute; left:5px; top:6px; bottom:6px; width:1px; background: var(--line);
+  }
+  .tl-item{ position:relative; padding-bottom: 28px; }
+  .tl-item:last-child{ padding-bottom:0; }
+  .tl-item::before{
+    content:""; position:absolute; left:-26px; top:5px; width:9px; height:9px; border-radius:50%;
+    background: var(--bg); border: 2px solid var(--confirmed);
+  }
+  .tl-date{ font-family:'IBM Plex Mono', monospace; font-size: 0.78rem; color: var(--accent); margin:0 0 4px; }
+  .tl-role{ font-weight:700; margin: 0 0 2px; font-size: 1rem; }
+  .tl-org{ color: var(--ink-soft); font-size: 0.9rem; margin: 0 0 6px; }
+  .tl-desc{ color: var(--ink-soft); font-size: 0.92rem; margin:0; max-width: 56ch; }
+
+  /* formation */
+  .edu-item{ margin-bottom: 20px; }
+  .edu-item:last-child{ margin-bottom:0; }
+  .edu-date{ font-family:'IBM Plex Mono', monospace; font-size: 0.78rem; color: var(--ink-soft); }
+  .edu-title{ font-weight:700; margin: 2px 0; }
+  .edu-org{ color: var(--ink-soft); font-size: 0.92rem; }
+
+  /* contact / footer */
+  footer{ padding: 56px 0 72px; }
+  .contact-grid{ display:flex; flex-wrap:wrap; gap: 14px; margin-bottom: 28px; }
+  .contact-item{
+    display:flex; align-items:center; gap:10px;
+    padding: 12px 16px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    font-size: 0.9rem;
+    text-decoration:none;
+    color: var(--ink);
+  }
+  .contact-item:hover{ border-color: var(--confirmed); }
+  .foot-note{ color: var(--ink-soft); font-size: 0.82rem; }
+
+  @media (max-width: 760px){
+    .hero-grid{ grid-template-columns: 1fr; }
+    .skill-groups{ grid-template-columns: 1fr; }
+    header.hero{ padding: 56px 0 44px; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ animation:none !important; transition:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <img class="avatar" src="profile.png" alt="Photo de Rantoniaina Harlivah Fanomezantsoa">
+      <p class="eyebrow-loc">Antananarivo, Madagascar</p>
+      <h1>Rantoniaina Harlivah Fanomezantsoa</h1>
+      <p class="role-line">Développeur full-stack — en spécialisation intelligence artificielle et sécurité informatique.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="mailto:francisco12ranto@gmail.com">Écrire un email</a>
+        <a class="btn" href="https://github.com/Ranto-nyaina" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn" href="https://www.figma.com/design/Cm2kS9kLRGap2Itq773dSp/Ipark?t=vX91U2awg8a4V7UT-1" target="_blank" rel="noopener">Figma</a>
+        <a class="btn" href="https://www.facebook.com/franciscoranto" target="_blank" rel="noopener">Facebook</a>
+      </div>
+    </div>
+
+    <div>
+      <svg class="diagram" viewBox="0 0 320 220" xmlns="http://www.w3.org/2000/svg">
+        <!-- connecting lines -->
+        <line x1="160" y1="110" x2="70" y2="40" stroke="#6FB8E0" stroke-width="1.2"/>
+        <line x1="160" y1="110" x2="250" y2="40" stroke="#6FB8E0" stroke-width="1.2"/>
+        <line x1="160" y1="110" x2="70" y2="180" stroke="#E8A33D" stroke-width="1.2" stroke-dasharray="4 4"/>
+        <line x1="160" y1="110" x2="250" y2="180" stroke="#E8A33D" stroke-width="1.2" stroke-dasharray="4 4"/>
+
+        <!-- center node -->
+        <circle cx="160" cy="110" r="26" fill="#16304A" stroke="#EAF3FA" stroke-width="1.4"/>
+        <text x="160" y="107" text-anchor="middle" class="node-label">RHF</text>
+        <text x="160" y="119" text-anchor="middle" class="node-sub">full-stack</text>
+
+        <!-- confirmed nodes (solid) -->
+        <circle cx="70" cy="40" r="20" fill="#12283F" stroke="#6FB8E0" stroke-width="1.4"/>
+        <text x="70" y="37" text-anchor="middle" class="node-label">React</text>
+        <text x="70" y="48" text-anchor="middle" class="node-sub">Native</text>
+
+        <circle cx="250" cy="40" r="20" fill="#12283F" stroke="#6FB8E0" stroke-width="1.4"/>
+        <text x="250" y="37" text-anchor="middle" class="node-label">Django</text>
+        <text x="250" y="48" text-anchor="middle" class="node-sub">PostgreSQL</text>
+
+        <!-- in-progress nodes (dashed) -->
+        <circle cx="70" cy="180" r="20" fill="#12283F" stroke="#E8A33D" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <text x="70" y="177" text-anchor="middle" class="node-label">IA</text>
+        <text x="70" y="188" text-anchor="middle" class="node-sub">en cours</text>
+
+        <circle cx="250" cy="180" r="20" fill="#12283F" stroke="#E8A33D" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <text x="250" y="177" text-anchor="middle" class="node-label">Sécurité</text>
+        <text x="250" y="188" text-anchor="middle" class="node-sub">en cours</text>
+      </svg>
+      <div class="legend">
+        <span><span class="swatch solid"></span> Acquis</span>
+        <span><span class="swatch dashed"></span> En spécialisation</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section id="profil">
+    <div class="wrap">
+      <h2>Profil</h2>
+      <div class="profil-text">
+        <p>En formation Bacc+4 en intelligence artificielle (ENI Fianarantsoa), je développe des applications web et mobiles de bout en bout : backend Django et PostgreSQL, frontend React Native, Vue.js et Flutter, jusqu'à la configuration des serveurs qui font tourner le tout.</p>
+        <p>Mon stage à la Direction Générale des Impôts m'a permis de livrer seul une application complète, du besoin métier au déploiement. Je complète aujourd'hui ce socle par une spécialisation en intelligence artificielle appliquée et en sécurité informatique.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="competences">
+    <div class="wrap">
+      <h2>Compétences</h2>
+      <div class="skill-groups">
+        <div class="skill-group">
+          <h3>Développement</h3>
+          <div class="tag-row">
+            <span class="tag">React Native</span>
+            <span class="tag">Flutter</span>
+            <span class="tag">Vue.js</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">PHP</span>
+            <span class="tag">HTML / CSS</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Langages</h3>
+          <div class="tag-row">
+            <span class="tag">Python</span>
+            <span class="tag">Java</span>
+            <span class="tag">C</span>
+            <span class="tag">C++</span>
+            <span class="tag">C#</span>
+            <span class="tag">Dart</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Bases de données</h3>
+          <div class="tag-row">
+            <span class="tag">PostgreSQL</span>
+            <span class="tag">MySQL</span>
+            <span class="tag">Oracle</span>
+            <span class="tag">SQLite</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Data &amp; IA</h3>
+          <div class="tag-row">
+            <span class="tag">scikit-learn</span>
+            <span class="tag">PySpark</span>
+            <span class="tag">NLTK</span>
+            <span class="tag">FastAPI</span>
+            <span class="tag">Streamlit</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Systèmes &amp; réseaux</h3>
+          <div class="tag-row">
+            <span class="tag">Administration Windows</span>
+            <span class="tag">Administration Linux</span>
+            <span class="tag">Configuration routeurs</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Collecte de données</h3>
+          <div class="tag-row">
+            <span class="tag">ODK</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Langues</h3>
+          <div class="tag-row">
+            <span class="tag">Français — courant</span>
+            <span class="tag">Anglais — intermédiaire</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projets">
+    <div class="wrap">
+      <h2>Projets</h2>
+      <p class="lede" style="margin-top:-16px; margin-bottom:28px;">Quatre réalisations concrètes, menées seul, du besoin métier au déploiement.</p>
+
+      <div class="project">
+        <div class="project-top">
+          <h3>Immatriculation fiscale en ligne</h3>
+          <span class="project-meta">Avr. 2024 – Nov. 2024</span>
+        </div>
+        <p class="project-role">Rôle : conception et développement complet, front et back.</p>
+        <p>Conception et réalisation d'une application mobile d'immatriculation fiscale en ligne avec un espace contribuable dédié aux personnes physiques, pour la Direction Générale des Impôts (Antananarivo). L'application couvre l'inscription, la gestion du profil contribuable et le suivi de la démarche depuis un mobile.</p>
+        <div class="tag-row">
+          <span class="tag">React Native</span>
+          <span class="tag">Django</span>
+          <span class="tag">PostgreSQL</span>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="project-top">
+          <h3>QCM AI — génération et correction de QCM assistée par IA</h3>
+          <span class="project-meta">Projet personnel</span>
+        </div>
+        <p class="project-role">Rôle : conception et développement complet, seul.</p>
+        <p>Application mobile/web permettant à des enseignants de générer automatiquement des QCM à partir d'un texte ou d'un PDF de cours, de créer des devoirs par niveau académique avec suivi individuel par étudiant, et de détecter le plagiat entre réponses par similarité TF-IDF. Les étudiants passent leurs QCM et devoirs selon leur niveau et suivent leurs résultats sur un tableau de bord.</p>
+        <div class="tag-row">
+          <span class="tag">Flutter</span>
+          <span class="tag">Django REST Framework</span>
+          <span class="tag">scikit-learn</span>
+          <span class="tag">TF-IDF</span>
+          <span class="tag">SQLite</span>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="project-top">
+          <h3>Analyse Big Data des avis clients</h3>
+          <span class="project-meta">Projet académique — Bacc+4 IA, 2026</span>
+        </div>
+        <p class="project-role">Rôle : conception et développement complet du pipeline, seul.</p>
+        <p>Pipeline complet d'analyse de 568 000+ avis clients (dataset Amazon Fine Food Reviews) : nettoyage des données, analyse NLP des thèmes et sentiments, modèles de Machine Learning pour prédire sentiment et note (89,7 % et 77,5 % d'accuracy), traitement Big Data avec PySpark, prévision de satisfaction par Holt-Winters, exposition via une API FastAPI et visualisation dans un dashboard Streamlit avec analyse en temps réel.</p>
+        <div class="tag-row">
+          <span class="tag">Python</span>
+          <span class="tag">PySpark</span>
+          <span class="tag">scikit-learn</span>
+          <span class="tag">NLTK</span>
+          <span class="tag">FastAPI</span>
+          <span class="tag">Streamlit</span>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="project-top">
+          <h3>Pare-feu applicatif — OWASP ModSecurity CRS</h3>
+          <span class="project-meta">Projet personnel</span>
+        </div>
+        <p class="project-role">Rôle : installation, configuration et tests, seul.</p>
+        <p>Installation et configuration de ModSecurity avec le jeu de règles OWASP Core Rule Set sur Kali Linux, devant une application web PHP de test servie par Apache2. Objectif : détecter et bloquer des attaques web courantes, puis vérifier la détection en analysant les logs générés par ModSecurity après envoi de requêtes malveillantes depuis un navigateur.</p>
+        <div class="tag-row">
+          <span class="tag">Kali Linux</span>
+          <span class="tag">Apache2</span>
+          <span class="tag">ModSecurity</span>
+          <span class="tag">OWASP CRS</span>
+          <span class="tag">PHP</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="wrap">
+      <h2>Expérience</h2>
+      <div class="timeline">
+        <div class="tl-item">
+          <p class="tl-date">Sept. 2025 – Déc. 2025</p>
+          <p class="tl-role">Agent de télésurveillance</p>
+          <p class="tl-org">Capria — Antananarivo</p>
+          <p class="tl-desc">Surveillance et sécurité en ligne des installations clientes.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-date">Avr. 2024 – Nov. 2024</p>
+          <p class="tl-role">Stagiaire développeur mobile</p>
+          <p class="tl-org">Direction Générale des Impôts — Antananarivo</p>
+          <p class="tl-desc">Développement d'une application mobile d'immatriculation fiscale (Django, React Native, PostgreSQL). Détail en section Projets.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-date">2024</p>
+          <p class="tl-role">Enquêteur</p>
+          <p class="tl-org">Agence Fitia Lafatra Fid — Toliara</p>
+          <p class="tl-desc">Collecte de données terrain sur le projet Vatsin'ankohonana.</p>
+        </div>
+        <div class="tl-item">
+          <p class="tl-date">2023</p>
+          <p class="tl-role">Caissier</p>
+          <p class="tl-org">U Express — Antaninarenina</p>
+          <p class="tl-desc">Gestion de caisse et relation client.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="formation">
+    <div class="wrap">
+      <h2>Formation</h2>
+      <div class="edu-item">
+        <p class="edu-date">2025 – 2026 (en cours)</p>
+        <p class="edu-title">Bacc+4 en Intelligence Artificielle</p>
+        <p class="edu-org">ENI Fianarantsoa, Madagascar</p>
+      </div>
+      <div class="edu-item">
+        <p class="edu-date">Avr. 2022 – Juil. 2022</p>
+        <p class="edu-title">Certificat de réussite — développement web</p>
+        <p class="edu-org">SAYNA, Toliara, Madagascar</p>
+      </div>
+      <div class="edu-item">
+        <p class="edu-date">2021</p>
+        <p class="edu-title">Baccalauréat, série D — mention Assez-bien</p>
+        <p class="edu-org">Collège Sacré-Cœur Tsianaloky, Toliara, Madagascar</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <h2>Contact</h2>
+    <div class="contact-grid">
+      <a class="contact-item" href="mailto:francisco12ranto@gmail.com">francisco12ranto@gmail.com</a>
+      <a class="contact-item" href="tel:+261340970011">+261 34 97 001 10</a>
+      <a class="contact-item" href="https://wa.me/261349700110" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="contact-item" href="https://github.com/Ranto-nyaina" target="_blank" rel="noopener">github.com/Ranto-nyaina</a>
+      <a class="contact-item" href="https://www.figma.com/design/Cm2kS9kLRGap2Itq773dSp/Ipark?t=vX91U2awg8a4V7UT-1" target="_blank" rel="noopener">Figma — Ipark</a>
+      <a class="contact-item" href="https://www.facebook.com/franciscoranto" target="_blank" rel="noopener">facebook.com/franciscoranto</a>
+    </div>
+    <p class="foot-note">Antananarivo, Madagascar</p>
+  </div>
+</footer>
+
+</body>
+</html>
