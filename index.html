@@ -112,11 +112,12 @@
   .swatch.dashed{ background: repeating-linear-gradient(90deg, var(--progress) 0 4px, transparent 4px 7px); }
 
   .avatar{
-    width: 64px; height: 64px;
+    width: 132px; height: 132px;
     border-radius: 50%;
     object-fit: cover;
-    border: 1px solid var(--line);
-    margin-bottom: 20px;
+    border: 3px solid var(--accent);
+    box-shadow: 0 0 0 6px rgba(232,163,61,0.12);
+    margin-bottom: 24px;
     display:block;
   }
 
@@ -216,6 +217,7 @@
     .hero-grid{ grid-template-columns: 1fr; }
     .skill-groups{ grid-template-columns: 1fr; }
     header.hero{ padding: 56px 0 44px; }
+    .avatar{ width: 96px; height: 96px; }
   }
 
   @media (prefers-reduced-motion: reduce){
