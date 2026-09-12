@@ -112,11 +112,11 @@
   .swatch.dashed{ background: repeating-linear-gradient(90deg, var(--progress) 0 4px, transparent 4px 7px); }
 
   .avatar{
-    width: 132px; height: 132px;
+    width: 176px; height: 176px;
     border-radius: 50%;
     object-fit: cover;
     border: 3px solid var(--accent);
-    box-shadow: 0 0 0 6px rgba(232,163,61,0.12);
+    box-shadow: 0 0 0 8px rgba(232,163,61,0.12);
     margin-bottom: 24px;
     display:block;
   }
@@ -173,6 +173,19 @@
     border-left: 2px solid var(--accent);
     padding-left: 10px;
   }
+  .project-link{
+    display:inline-flex; align-items:center; gap:6px;
+    margin-top: 16px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.82rem;
+    color: var(--confirmed);
+    text-decoration: none;
+    border-top: 1px solid var(--line);
+    padding-top: 14px;
+    width: 100%;
+  }
+  .project-link:hover{ color: var(--accent); }
+  .project-link::after{ content: "→"; }
 
   /* expérience — timeline */
   .timeline{ position:relative; padding-left: 26px; }
@@ -217,7 +230,7 @@
     .hero-grid{ grid-template-columns: 1fr; }
     .skill-groups{ grid-template-columns: 1fr; }
     header.hero{ padding: 56px 0 44px; }
-    .avatar{ width: 96px; height: 96px; }
+    .avatar{ width: 128px; height: 128px; }
   }
 
   @media (prefers-reduced-motion: reduce){
@@ -238,7 +251,6 @@
       <div class="cta-row">
         <a class="btn primary" href="mailto:francisco12ranto@gmail.com">Écrire un email</a>
         <a class="btn" href="https://github.com/Ranto-nyaina" target="_blank" rel="noopener">GitHub</a>
-        <a class="btn" href="https://www.figma.com/design/Cm2kS9kLRGap2Itq773dSp/Ipark?t=vX91U2awg8a4V7UT-1" target="_blank" rel="noopener">Figma</a>
         <a class="btn" href="https://www.facebook.com/franciscoranto" target="_blank" rel="noopener">Facebook</a>
       </div>
     </div>
@@ -353,6 +365,13 @@
           </div>
         </div>
         <div class="skill-group">
+          <h3>Design</h3>
+          <div class="tag-row">
+            <span class="tag">Figma</span>
+            <span class="tag">UI/UX</span>
+          </div>
+        </div>
+        <div class="skill-group">
           <h3>Langues</h3>
           <div class="tag-row">
             <span class="tag">Français — courant</span>
@@ -366,7 +385,7 @@
   <section id="projets">
     <div class="wrap">
       <h2>Projets</h2>
-      <p class="lede" style="margin-top:-16px; margin-bottom:28px;">Quatre réalisations concrètes, menées seul, du besoin métier au déploiement.</p>
+      <p class="lede" style="margin-top:-16px; margin-bottom:28px;">Cinq réalisations concrètes, menées seul, du besoin métier au déploiement.</p>
 
       <div class="project">
         <div class="project-top">
@@ -380,6 +399,7 @@
           <span class="tag">Django</span>
           <span class="tag">PostgreSQL</span>
         </div>
+        <a class="project-link" href="https://github.com/Ranto-nyaina/immatriculation_fiscale_en_ligne" target="_blank" rel="noopener">Voir le code</a>
       </div>
 
       <div class="project">
@@ -396,6 +416,7 @@
           <span class="tag">TF-IDF</span>
           <span class="tag">SQLite</span>
         </div>
+        <a class="project-link" href="https://github.com/Ranto-nyaina/DevMobile_qcm_IA" target="_blank" rel="noopener">Voir le code</a>
       </div>
 
       <div class="project">
@@ -413,6 +434,22 @@
           <span class="tag">FastAPI</span>
           <span class="tag">Streamlit</span>
         </div>
+        <a class="project-link" href="https://github.com/Ranto-nyaina/big-data-analyse-avis-clients" target="_blank" rel="noopener">Voir le code</a>
+      </div>
+
+      <div class="project">
+        <div class="project-top">
+          <h3>iPark — location de parkings entre particuliers</h3>
+          <span class="project-meta">Projet personnel — design</span>
+        </div>
+        <p class="project-role">Rôle : design UI/UX, seul.</p>
+        <p>Design d'une plateforme mobile C2C de location de places de parking privées en ville : recherche, réservation et confirmation de bout en bout, avec tarifs dégressifs, bornes de recharge électrique et codes d'accès sécurisés.</p>
+        <div class="tag-row">
+          <span class="tag">Figma</span>
+          <span class="tag">UI/UX</span>
+          <span class="tag">Mobile</span>
+        </div>
+        <a class="project-link" href="https://www.figma.com/design/Cm2kS9kLRGap2Itq773dSp/Ipark" target="_blank" rel="noopener">Voir sur Figma</a>
       </div>
 
       <div class="project">
@@ -495,7 +532,6 @@
       <a class="contact-item" href="tel:+261340970011">+261 34 97 001 10</a>
       <a class="contact-item" href="https://wa.me/261349700110" target="_blank" rel="noopener">WhatsApp</a>
       <a class="contact-item" href="https://github.com/Ranto-nyaina" target="_blank" rel="noopener">github.com/Ranto-nyaina</a>
-      <a class="contact-item" href="https://www.figma.com/design/Cm2kS9kLRGap2Itq773dSp/Ipark?t=vX91U2awg8a4V7UT-1" target="_blank" rel="noopener">Figma — Ipark</a>
       <a class="contact-item" href="https://www.facebook.com/franciscoranto" target="_blank" rel="noopener">facebook.com/franciscoranto</a>
     </div>
     <p class="foot-note">Antananarivo, Madagascar</p>

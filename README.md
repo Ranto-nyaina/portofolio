@@ -9,11 +9,16 @@ Site portfolio personnel, développeur full-stack en spécialisation intelligenc
 Site statique en une page, sans framework ni build :
 
 - **Profil** — présentation et positionnement
-- **Compétences** — développement, bases de données, systèmes & réseaux, data/IA
-- **Projets** — 4 réalisations : application mobile d'immatriculation fiscale (stage DGI), QCM AI (génération et correction assistées par IA), analyse Big Data d'avis clients (NLP, ML, PySpark), pare-feu applicatif OWASP ModSecurity
+- **Compétences** — développement, bases de données, systèmes & réseaux, data/IA, design
+- **Projets** — 5 réalisations, chacune avec son lien (code ou design) :
+  - [Immatriculation fiscale en ligne](https://github.com/Ranto-nyaina/immatriculation_fiscale_en_ligne) — application mobile pour la Direction Générale des Impôts (stage)
+  - [QCM AI](https://github.com/Ranto-nyaina/DevMobile_qcm_IA) — génération et correction de QCM assistées par IA
+  - [Analyse Big Data des avis clients](https://github.com/Ranto-nyaina/big-data-analyse-avis-clients) — NLP, Machine Learning, PySpark
+  - [iPark](https://www.figma.com/design/Cm2kS9kLRGap2Itq773dSp/Ipark) — design UI/UX d'une plateforme de location de parkings (Figma)
+  - Pare-feu applicatif OWASP ModSecurity — configuration d'un WAF sur Kali Linux
 - **Expérience** — parcours professionnel
 - **Formation** — cursus académique
-- **Contact** — email, téléphone, WhatsApp, GitHub, Figma, Facebook
+- **Contact** — email, téléphone, WhatsApp, GitHub, Facebook
 
 ## Stack
 
@@ -46,4 +51,3 @@ portofolio/
 
 - Email : francisco12ranto@gmail.com
 - GitHub : [@Ranto-nyaina](https://github.com/Ranto-nyaina)
-- Figma : [Ipark](https://www.figma.com/design/Cm2kS9kLRGap2Itq773dSp/Ipark)
